@@ -92,7 +92,6 @@ Activate it:
 ```bash
 venv\Scripts\activate
 ```
-
 **Mac/Linux**
 ```bash
 source venv/bin/activate
@@ -141,3 +140,4 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
