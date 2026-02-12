@@ -22,14 +22,16 @@ and it instantly shows an estimated monthly rent using a machine learning model 
 
 ## 🚀 Features
 
-- ML-based rent prediction  
-- Clean Next.js + Tailwind frontend  
-- Enter key moves to next input  
-- Only positive numbers allowed  
-- Result disappears while typing new values  
-- Button disabled if fields are empty  
-- Loading state while predicting  
-- REST API connection to backend  
+- Machine Learning based house rent prediction
+- FastAPI backend with REST prediction endpoint
+- Next.js frontend with Tailwind CSS UI
+- Full-stack integration (frontend ↔ backend ↔ ML model)
+- One-hot encoding for categorical inputs (City, Locality)
+- Controlled React form inputs
+- Loading state during prediction
+- Real-time prediction display
+- Modular backend structure
+- Model inference using joblib
 
 ---
 
@@ -104,7 +106,7 @@ pip install -r requirements.txt
 
 Start backend server:
 ```bash
-python app.py
+uvicorn app.main:app --reload
 ```
 
 Backend will run at:
@@ -140,4 +142,5 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
