@@ -36,7 +36,7 @@ and it instantly predicts the **estimated house price (in Lakhs)** using an ML m
 ## 📊 Model Performance
 
 - XGBoost Regressor  
-- RMSE ≈ **26 Lakhs**
+- RMSE ≈ **45 Lakhs**
 
 ---
 
@@ -176,6 +176,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
