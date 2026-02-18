@@ -3,7 +3,6 @@
 PropWise AI is a full-stack machine learning web application that predicts house prices in Bangalore using XGBoost.
 
 This project combines Machine Learning, FastAPI backend, and a Next.js frontend into a real-world end-to-end system.
-
 ---
 
 ## ✨ What this project does
@@ -67,7 +66,7 @@ and it instantly predicts the **estimated house price (in Lakhs)** using an ML m
 Clone the repo and move inside folder:
 ```bash
 git clone https://github.com/Himanshimittal051104/PropWise_AI.git
-cd PropWiseAI
+cd PropWise_AI
 ```
 
 Install packages:
@@ -139,7 +138,7 @@ http://127.0.0.1:8000
 
 ---
 
-## 📥 Sample API Response
+## 📤 Sample API Response
 ```json
 {
   "predicted_price_lakhs": 78.4
@@ -176,6 +175,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
