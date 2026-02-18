@@ -1,7 +1,9 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
 import pandas as pd
+import numpy as np
 
 app = FastAPI()
 
@@ -17,27 +19,28 @@ app.add_middleware(
 model = joblib.load("model/house_model.pkl")
 columns = joblib.load("model/columns.pkl")
 
+class HouseInput(BaseModel):
+    location: str
+    bhk: int
+    bathroom: int
+    total_sqft: float
+
 @app.get("/")
 def home():
     return {"message": "Bangalore House Price Prediction API running"}
 
 @app.post("/predict")
-def predict(data: dict):
+def predict(data: HouseInput):
 
-    # numeric inputs (must match training)
-    sqft = float(data["total_sqft"])
-    bhk = int(data["bhk"])
-    bath = int(data["bath"])
-    location = data["location"]
-
-    # price_per_sqft feature (important!)
-    price_per_sqft = 5000   # default fallback (average BLR)
+    sqft = data.total_sqft
+    bhk = data.bhk
+    bathroom = data.bathroom
+    location = data.location.strip()
 
     input_data = {
         "total_sqft": sqft,
-        "bath": bath,
-        "bhk": bhk,
-        "price_per_sqft": price_per_sqft
+        "bathroom": bathroom,
+        "bhk": bhk
     }
 
     df = pd.DataFrame([input_data])
@@ -47,7 +50,9 @@ def predict(data: dict):
 
     if location_col in columns:
         df[location_col] = 1
-
+    else:
+       df["location_other"] = 1
+    
     # fill missing columns with 0
     for col in columns:
         if col not in df.columns:
@@ -55,8 +60,7 @@ def predict(data: dict):
 
     df = df[columns]
 
-    prediction = model.predict(df)[0]
-
+    prediction = np.expm1(model.predict(df)[0]) 
     # minimum safeguard (10 lakhs)
     final_prediction = max(10, prediction)
 
