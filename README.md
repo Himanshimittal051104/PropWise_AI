@@ -1,6 +1,6 @@
-# RentWise AI 🏠
+# PropWise AI 🏠
 
-RentWise AI is a full-stack machine learning project that predicts monthly house rent based on basic property details like city, area, BHK, size, and bathrooms.
+PropWise AI is a full-stack machine learning project that predicts monthly house rent based on basic property details like city, area, BHK, size, and bathrooms.
 
 I built this project to practice combining frontend, backend, and machine learning into one real-world application.
 
@@ -142,5 +142,6 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
