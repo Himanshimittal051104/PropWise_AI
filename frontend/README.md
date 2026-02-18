@@ -1,36 +1,181 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PropWise AI 🏠
 
-## Getting Started
+PropWise AI is a full-stack machine learning web application that predicts house prices in Bangalore using XGBoost.
 
-First, run the development server:
+This project combines Machine Learning, FastAPI backend, and a Next.js frontend into a real-world end-to-end system.
+---
 
+## ✨ What this project does
+
+You enter:
+
+- Location
+- BHK
+- Total Sqft
+- Bathrooms
+
+and it instantly predicts the **estimated house price (in Lakhs)** using an ML model served via FastAPI.
+
+---
+
+## 🚀 Features
+
+- XGBoost-based house price prediction
+- Feature engineering + outlier removal
+- Location encoding
+- FastAPI backend REST API
+- Next.js + Tailwind frontend
+- End-to-end ML pipeline (Notebook → Model → API → UI)
+- Real-time prediction
+- Controlled React inputs
+- Loading state during inference
+
+---
+
+## 📊 Model Performance
+
+- XGBoost Regressor  
+- RMSE ≈ **26 Lakhs**
+
+---
+
+## 🛠 Tech Stack
+
+### Machine Learning
+- Python
+- Pandas / NumPy
+- Scikit-learn
+- XGBoost
+
+### Backend
+- FastAPI
+- Joblib
+
+### Frontend
+- Next.js (React)
+- Tailwind CSS
+
+### Tools
+- Git & GitHub
+
+---
+
+
+## ▶ How to run (Frontend)
+
+Clone the repo and move inside folder:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Himanshimittal051104/PropWise_AI.git
+cd PropWise_AI
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install packages:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Start frontend:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open in browser:
+```text
+http://localhost:3000
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ▶ How to run (Backend)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Go to backend folder:
+```bash
+cd backend
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create virtual environment (optional but recommended):
+```bash
+python -m venv venv
+```
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Activate it:
+**Windows**
+```bash
+venv\Scripts\activate
+```
+**Mac/Linux**
+```bash
+source venv/bin/activate
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+Start backend server:
+```bash
+uvicorn app.main:app --reload
+```
+
+Backend will run at:
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## 📥 Sample API Request
+```json
+{
+  "location": "Whitefield",
+  "bhk": 2,
+  "total_sqft": 1200,
+  "bath": 2
+}
+```
+
+---
+
+## 📤 Sample API Response
+```json
+{
+  "predicted_price_lakhs": 78.4
+}
+```
+
+---
+
+## 📌 Why I built this
+
+This project helped me understand:
+
+- How frontend communicates with backend
+- How ML models are used in real applications
+- Form validation and UX handling
+- API integration
+- Real-world React logic
+
+---
+
+## 🔮 Future Improvements
+
+- Deploy frontend & backend
+- Location dropdown
+- Add charts for predictions
+- Better UI animations
+- Add error messages
+- Multi-city support
+
+---
+
+## 👩‍💻 Author
+
+Himanshi Mittal
+
+---
+
+
+
+
