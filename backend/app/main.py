@@ -4,6 +4,7 @@ import joblib
 import pandas as pd
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -12,32 +13,40 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Load trained model + columns
+# Load model + columns
 model = joblib.load("model/house_model.pkl")
 columns = joblib.load("model/columns.pkl")
 
 @app.get("/")
 def home():
-    return {"message": "Rent Prediction API running"}
+    return {"message": "Bangalore House Price Prediction API running"}
 
 @app.post("/predict")
 def predict(data: dict):
 
-    # numeric inputs
+    # numeric inputs (must match training)
+    sqft = float(data["total_sqft"])
+    bhk = int(data["bhk"])
+    bath = int(data["bath"])
+    location = data["location"]
+
+    # price_per_sqft feature (important!)
+    price_per_sqft = 5000   # default fallback (average BLR)
+
     input_data = {
-        "BHK": data["BHK"],
-        "Size": data["Size"],
-        "Bathroom": data["Bathroom"]
+        "total_sqft": sqft,
+        "bath": bath,
+        "bhk": bhk,
+        "price_per_sqft": price_per_sqft
     }
 
     df = pd.DataFrame([input_data])
 
-    # categorical columns
-    city_col = "City_" + data["City"]
-    area_col = "Area Locality_" + data["Area_Locality"]
+    # one-hot location
+    location_col = "location_" + location
 
-    df[city_col] = 1
-    df[area_col] = 1
+    if location_col in columns:
+        df[location_col] = 1
 
     # fill missing columns with 0
     for col in columns:
@@ -46,8 +55,9 @@ def predict(data: dict):
 
     df = df[columns]
 
-    prediction = model.predict(df)
-    final_prediction = max(0, prediction[0])
+    prediction = model.predict(df)[0]
 
-    return {"predicted_rent": float(final_prediction)}
+    # minimum safeguard (10 lakhs)
+    final_prediction = max(10, prediction)
 
+    return {"predicted_price_lakhs": float(final_prediction)}
