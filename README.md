@@ -1,8 +1,8 @@
 # PropWise AI 🏠
 
-PropWise AI is a full-stack machine learning project that predicts monthly house rent based on basic property details like city, area, BHK, size, and bathrooms.
+PropWise AI is a full-stack machine learning web application that predicts house prices in Bangalore using XGBoost.
 
-I built this project to practice combining frontend, backend, and machine learning into one real-world application.
+This project combines Machine Learning, FastAPI backend, and a Next.js frontend into a real-world end-to-end system.
 
 ---
 
@@ -10,53 +10,64 @@ I built this project to practice combining frontend, backend, and machine learni
 
 You enter:
 
-- City
-- Area / Locality  
-- BHK  
-- Size (sqft)  
-- Bathrooms  
+- Location
+- BHK
+- Total Sqft
+- Bathrooms
 
-and it instantly shows an estimated monthly rent using a machine learning model running on the backend.
+and it instantly predicts the **estimated house price (in Lakhs)** using an ML model served via FastAPI.
 
 ---
 
 ## 🚀 Features
 
-- Machine Learning based house rent prediction
-- FastAPI backend with REST prediction endpoint
-- Next.js frontend with Tailwind CSS UI
-- Full-stack integration (frontend ↔ backend ↔ ML model)
-- One-hot encoding for categorical inputs (City, Locality)
-- Controlled React form inputs
-- Loading state during prediction
-- Real-time prediction display
-- Modular backend structure
-- Model inference using joblib
+- XGBoost-based house price prediction
+- Feature engineering + outlier removal
+- Location encoding
+- FastAPI backend REST API
+- Next.js + Tailwind frontend
+- End-to-end ML pipeline (Notebook → Model → API → UI)
+- Real-time prediction
+- Controlled React inputs
+- Loading state during inference
 
 ---
 
-## 🛠 Tech Used
+## 📊 Model Performance
 
-Frontend  
-- React / Next.js  
-- Tailwind CSS  
-
-Backend  
-- Python  
-- Machine Learning  
-- REST API  
-
-Tools  
-- Git & GitHub  
+- XGBoost Regressor  
+- RMSE ≈ **26 Lakhs**
 
 ---
+
+## 🛠 Tech Stack
+
+### Machine Learning
+- Python
+- Pandas / NumPy
+- Scikit-learn
+- XGBoost
+
+### Backend
+- FastAPI
+- Joblib
+
+### Frontend
+- Next.js (React)
+- Tailwind CSS
+
+### Tools
+- Git & GitHub
+
+---
+
 
 ## ▶ How to run (Frontend)
 
 Clone the repo and move inside folder:
 ```bash
-git clone https://github.com/Himanshimittal051104/RentWise-AI.git
-cd RentWise-AI
+git clone https://github.com/Himanshimittal051104/PropWise_AI.git
+cd PropWiseAI
 ```
 
 Install packages:
@@ -116,6 +127,27 @@ http://127.0.0.1:8000
 
 ---
 
+## 📥 Sample API Request
+```json
+{
+  "location": "Whitefield",
+  "bhk": 2,
+  "total_sqft": 1200,
+  "bath": 2
+}
+```
+
+---
+
+## 📥 Sample API Response
+```json
+{
+  "predicted_price_lakhs": 78.4
+}
+```
+
+---
+
 ## 📌 Why I built this
 
 This project helped me understand:
@@ -131,9 +163,11 @@ This project helped me understand:
 ## 🔮 Future Improvements
 
 - Deploy frontend & backend
+- Location dropdown
 - Add charts for predictions
 - Better UI animations
 - Add error messages
+- Multi-city support
 
 ---
 
@@ -142,6 +176,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
