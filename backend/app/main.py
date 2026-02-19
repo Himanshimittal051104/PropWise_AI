@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import numpy as np
@@ -32,7 +32,7 @@ def predict(data: HouseInput):
     df = pd.DataFrame([input_data])
 
     # one-hot location
-    location_col = "location_" + data.location.strip()
+    location_col = "location_" + data.location
 
     if location_col in columns:
         df[location_col] = 1
@@ -47,7 +47,5 @@ def predict(data: HouseInput):
     df = df[columns]
 
     prediction = np.expm1(model.predict(df)[0]) 
-    # minimum safeguard (10 lakhs)
-    final_prediction = max(10, prediction)
 
-    return {"predicted_price_lakhs": float(final_prediction)}
+    return {"predicted_price_lakhs": float(prediction)}
