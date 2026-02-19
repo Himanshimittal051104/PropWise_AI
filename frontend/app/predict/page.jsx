@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 export default function PredictPage() {
+    const [locations, setLocations] = useState([]);
     const [formData, setFormData] = useState({
         location: "",
         total_sqft: "",
@@ -16,9 +18,18 @@ export default function PredictPage() {
             ...formData,
             [e.target.name]: e.target.value,
         });
-        
+
     };
 
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/locations`)
+            .then(res => res.json())
+            .then(data => setLocations(data.locations || []))
+            .catch(err => {
+                console.error(err);
+                setLocations([]);
+            });
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -83,6 +94,24 @@ export default function PredictPage() {
                             className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white"
                         />
                     </div>
+                    <select
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        required
+                        className="mt-2 w-full appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
+                    >
+                        <option value="">Select Location</option>
+
+                        {locations.map((loc, idx) => (
+                            <option key={idx} value={loc}>
+                                {loc
+                                    .split(" ")
+                                    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                                    .join(" ")}
+                            </option>
+                        ))}
+                    </select>
 
                     {/* Total Sqft */}
                     <div>
@@ -153,7 +182,7 @@ export default function PredictPage() {
                 </form>
             </div>
 
-            
+
 
         </div>
     );

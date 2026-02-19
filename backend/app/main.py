@@ -49,3 +49,8 @@ def predict(data: HouseInput):
     prediction = np.expm1(model.predict(df)[0]) 
 
     return {"predicted_price_lakhs": float(prediction)}
+
+@app.get("/locations")
+def get_locations():
+    locations = [col.replace("location_", "") for col in columns if col.startswith("location_")]
+    return {"locations": sorted(locations)}
