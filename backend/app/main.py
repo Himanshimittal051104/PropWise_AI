@@ -24,7 +24,7 @@ def home():
 def predict(data: HouseInput):
 
     input_data = {
-        "total_sqft": data.sqft,
+        "total_sqft": data.total_sqft,
         "bathroom": data.bathroom,
         "bhk": data.bhk
     }
