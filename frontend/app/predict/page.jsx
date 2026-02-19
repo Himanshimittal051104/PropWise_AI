@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ResultCard from "@/components/ResultCard";
-
+import { useRouter } from "next/navigation";
 export default function PredictPage() {
     const [formData, setFormData] = useState({
         location: "",
@@ -10,22 +9,20 @@ export default function PredictPage() {
         bhk: "",
         bathroom: "",
     });
-
-    const [prediction, setPrediction] = useState(null);
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
-        setPrediction(null);
+        
     };
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setPrediction(null);
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/predict`, {
@@ -42,7 +39,9 @@ export default function PredictPage() {
             });
 
             const data = await response.json();
-            setPrediction(data.predicted_price_lakhs);
+            router.push(
+                `/result?price=${data.predicted_price_lakhs}&bhk=${formData.bhk}&location=${formData.location}&sqft=${formData.total_sqft}`
+            );
         } catch (error) {
             console.error(error);
         }
@@ -144,8 +143,8 @@ export default function PredictPage() {
                         type="submit"
                         disabled={loading}
                         className={`w-full font-medium py-3 rounded-lg transition ${loading
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-blue-600 hover:bg-blue-700 text-white"
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-blue-600 hover:bg-blue-700 text-white"
                             }`}
                     >
                         {loading ? "Predicting..." : "Predict Price"}
@@ -154,13 +153,7 @@ export default function PredictPage() {
                 </form>
             </div>
 
-            {/* Result Section */}
-            <div className="max-w-2xl mx-auto mt-10">
-               
-                {prediction && (
-                    <ResultCard price={prediction} />
-                )}
-            </div>
+            
 
         </div>
     );
