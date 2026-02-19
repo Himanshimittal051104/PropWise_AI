@@ -37,7 +37,7 @@ and it instantly predicts the **estimated house price (in Lakhs)** using an ML m
 ## 📊 Model Performance
 
 - XGBoost Regressor  
-- RMSE ≈ **45 Lakhs**(after feature engineering, log-transform & outlier removal)
+- RMSE ≈ **45 Lakhs** (after feature engineering, log-transform & outlier removal)
 
 ---
 
@@ -143,13 +143,13 @@ http://127.0.0.1:8000
 
 ---
 
-## 🌐 Backend Deployment(Render)
+## 🌐 Backend Deployment (Render)
 
-FastAPI backend is deployed on Render with GitHub auto-deploy.
+FastAPI backend is deployed on Render with GitHub auto-deploy enabled.
 
 Live API:
 ```bash
-https://propwise-ai.onrender.com
+https://propwise-ai.onrender.com/docs
 ```
 
 Features:
@@ -219,6 +219,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
