@@ -11,9 +11,9 @@ PropWise AI is a full-stack machine learning web application that predicts house
 You enter:
 
 - Location
-- BHK
-- Total Sqft
+- BHK 
 - Bathrooms
+- Total Sqft
 
 and it instantly predicts the **estimated house price (in Lakhs)** using an ML model served via FastAPI.
 
@@ -155,13 +155,30 @@ FastAPI backend is deployed on Render with GitHub auto-deploy.
 
 ---
 
+## 🌐 Live Backend API (Deployed on Render)
+
+Backend URL:
+```bash
+https://propwise-ai.onrender.com
+```
+
+---
+
+## 🧪 Backend API Demo
+
+FastAPI Swagger UI showing live prediction endpoint:
+
+![Swagger Demo](backend/assets/swagger_live_prediction.png)
+
+---
+
 ## 📥 Sample API Request
 ```json
 {
   "location": "Whitefield",
   "bhk": 2,
-  "total_sqft": 1200,
-  "bathroom": 2
+  "bathroom": 2,
+  "total_sqft": 1200
 }
 ```
 
@@ -204,6 +221,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
