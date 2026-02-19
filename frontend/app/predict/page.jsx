@@ -80,31 +80,18 @@ export default function PredictPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
 
                     {/* Location */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Location
-                        </label>
-                        <input
-                            name="location"
-                            value={formData.location}
-                            onChange={handleChange}
-                            required
-                            type="text"
-                            placeholder="Whitefield, Indiranagar"
-                            className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white"
-                        />
-                    </div>
+                    
                     <select
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
                         required
-                        className="mt-2 w-full appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
+                        className="mt-2 w-full appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 "
                     >
                         <option value="">Select Location</option>
 
                         {locations.map((loc, idx) => (
-                            <option key={idx} value={loc}>
+                            <option key={idx} value={loc} className="max-h-60 overflow-y-auto" >
                                 {loc
                                     .split(" ")
                                     .map(w => w.charAt(0).toUpperCase() + w.slice(1))
