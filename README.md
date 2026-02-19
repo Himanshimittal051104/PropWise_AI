@@ -2,7 +2,7 @@
 
 PropWise AI is a full-stack machine learning web application that predicts house prices in Bangalore using XGBoost.
 
-This project combines Machine Learning, FastAPI backend, and a Next.js frontend into a real-world end-to-end system.
+**This project combines Machine Learning, FastAPI backend, and a Next.js frontend into a real-world end-to-end system.**
 
 ---
 
@@ -25,6 +25,7 @@ and it instantly predicts the **estimated house price (in Lakhs)** using an ML m
 - Feature engineering + outlier removal
 - Location encoding
 - FastAPI backend REST API
+- Pydantic-based backend validation
 - Next.js + Tailwind frontend
 - End-to-end ML pipeline (Notebook → Model → API → UI)
 - Real-time prediction
@@ -36,7 +37,22 @@ and it instantly predicts the **estimated house price (in Lakhs)** using an ML m
 ## 📊 Model Performance
 
 - XGBoost Regressor  
-- RMSE ≈ **45 Lakhs**
+- RMSE ≈ **45 Lakhs**(after feature engineering, log-transform & outlier removal)
+
+---
+
+## 🧠 ML Pipeline
+
+- Raw Bangalore housing dataset
+- Data cleaning + null handling
+- Feature engineering
+- Outlier removal
+- Log transformation on target
+- One-hot encoding
+- XGBoost training
+- Model serialization (Joblib)
+- FastAPI inference
+- React frontend consumption
 
 ---
 
@@ -127,13 +143,25 @@ http://127.0.0.1:8000
 
 ---
 
+## 🌐 Backend Deployment
+
+FastAPI backend is deployed on Render with GitHub auto-deploy.
+
+- Live REST API
+- Input validation using Pydantic
+- Unknown locations mapped to `other`
+- Log-transformed target with inverse inference
+- Minimum price safeguard
+
+---
+
 ## 📥 Sample API Request
 ```json
 {
   "location": "Whitefield",
   "bhk": 2,
   "total_sqft": 1200,
-  "bath": 2
+  "bathroom": 2
 }
 ```
 
@@ -162,7 +190,7 @@ This project helped me understand:
 
 ## 🔮 Future Improvements
 
-- Deploy frontend & backend
+- Deploy frontend 
 - Location dropdown
 - Add charts for predictions
 - Better UI animations
@@ -176,6 +204,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
