@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className=" border-t border-gray-200 ">
-      <div className="max-w-6xl mx-auto px-6 pt-12">
+      <div className="max-w-6xl mx-auto px-6 py-12">
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 py-6 border-t border-gray-200 text-center text-sm text-gray-500">
+        <div className="mt-12 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} PropWise AI — Built by Himanshi Mittal
         </div>
 

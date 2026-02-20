@@ -16,7 +16,7 @@ export default function Navbar() {
         <div className="flex  gap-8 items-center text-sm">
           <Link href="/predict">Predict</Link>
           <Link href="/dashboard">Dashboard</Link>
-          <Link href="/about">About</Link>
+          <Link href="/#about">About</Link>
         </div>
 
         {/* CTA */}
