@@ -6,6 +6,14 @@ PropWise AI is a full-stack machine learning web application that predicts house
 
 ---
 
+## 🔗 Live Links
+
+Frontend (Vercel): https://propwise-ai.vercel.app/
+
+Backend API (Render): https://propwise-ai.onrender.com/docs
+
+---
+
 ## ✨ What this project does
 
 You enter:
@@ -15,7 +23,7 @@ You enter:
 - Bathrooms
 - Total Sqft
 
-and it instantly predicts the **estimated house price (in Lakhs)** using an ML model served via FastAPI.
+and PropWise AI instantly predicts the **estimated house price (in Lakhs)** using an ML model served via FastAPI.
 
 ---
 
@@ -23,14 +31,17 @@ and it instantly predicts the **estimated house price (in Lakhs)** using an ML m
 
 - XGBoost-based house price prediction
 - Feature engineering + outlier removal
-- Location encoding
+- Location one-hot encoding
 - FastAPI backend REST API
 - Pydantic-based backend validation
+- Separate result page with analytics
+- Dashboard with prediction history (localStorage)
+- Real-time inference
+- Loading states & form validation
 - Next.js + Tailwind frontend
 - End-to-end ML pipeline (Notebook → Model → API → UI)
-- Real-time prediction
-- Controlled React inputs
-- Loading state during inference
+- Backend deployed on Render
+- Frontend deployed on Vercel
 
 ---
 
@@ -67,10 +78,14 @@ and it instantly predicts the **estimated house price (in Lakhs)** using an ML m
 ### Backend
 - FastAPI
 - Joblib
+- Pydantic
+- Render Deployment
 
 ### Frontend
 - Next.js (React)
 - Tailwind CSS
+- React Select
+- Vercel Deployment
 
 ### Tools
 - Git & GitHub
@@ -143,7 +158,9 @@ http://127.0.0.1:8000
 
 ---
 
-## 🌐 Backend Deployment (Render)
+## 🌐 Deployment 
+
+### Backend (Render)
 
 FastAPI backend is deployed on Render with GitHub auto-deploy enabled.
 
@@ -159,6 +176,15 @@ Features:
 - Unknown locations mapped to `other`
 - Log-transformed target with inverse inference
 - Minimum price safeguard
+
+### Frontend (Vercel)
+
+Next.js frontend deployed on Vercel.
+
+Connected to backend using environment variable:
+```bash
+NEXT_PUBLIC_API_URL=https://propwise-ai.onrender.com
+```
 
 ---
 
@@ -195,21 +221,24 @@ FastAPI Swagger UI showing live prediction endpoint:
 
 This project helped me understand:
 
-- How frontend communicates with backend
-- How ML models are used in real applications
-- Form validation and UX handling
-- API integration
-- Real-world React logic
+- Deploying ML models to production
+- FastAPI backend development
+- React + Next.js integration
+- Real-world form handling
+- API communication
+- Dashboard analytics
+- Full-stack deployment workflow
 
 ---
 
 ## 🔮 Future Improvements
 
-- Deploy frontend 
-- Add charts for predictions
-- Better UI animations
-- Add error messages
+- Charts for price trends
 - Multi-city support
+- Authentication
+- Improved UI animations
+- Error messaging
+- Database integration
 
 ---
 
@@ -218,6 +247,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
