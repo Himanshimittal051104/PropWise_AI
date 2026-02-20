@@ -34,7 +34,7 @@ export default function Hero() {
 
             {/* Right */}
             <div className="h-[300px] rounded-xl bg-gradient-to-br from-gray-200 to-gray-100 flex items-center justify-center">
-                <img src="/dashboard_preview.png" alt="Dashboard Preview"
+                <img src="/screenshots/dashboard_preview.png" alt="Dashboard Preview"
                     className="rounded-2xl shadow-2xl "></img>
             </div>
         </section>
