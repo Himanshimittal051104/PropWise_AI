@@ -141,6 +141,10 @@ http://127.0.0.1:8000
 
 ### Start Frontend
 
+Go to frontend folder:
+```bash
+cd frontend
+```
 Install packages:
 ```bash
 npm install
@@ -255,6 +259,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
