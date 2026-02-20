@@ -26,6 +26,7 @@ and submit to receive a **predicted house price** (in Lakhs) from the backend.
 ---
 
 ## 📁 Folder Structure
+```md
 frontend/
 ├── app/ # Next.js pages & routes
 ├── components/ # UI Components
@@ -33,7 +34,7 @@ frontend/
 ├── styles/ # Tailwind + global CSS
 ├── package.json # Frontend dependencies & scripts
 └── README.md # This file
-
+```
 ---
 
 ## ▶ How to run locally
