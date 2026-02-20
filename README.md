@@ -206,7 +206,6 @@ This project helped me understand:
 ## 🔮 Future Improvements
 
 - Deploy frontend 
-- Location dropdown
 - Add charts for predictions
 - Better UI animations
 - Add error messages
@@ -219,6 +218,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
