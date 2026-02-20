@@ -196,6 +196,14 @@ FastAPI Swagger UI showing live prediction endpoint:
 
 ---
 
+## ## 📸 Screenshots
+
+![Home Page](frontend/public/screenshots/home.png)
+![Predict Page](frontend/public/screenshots/predict.png)
+![Dashboard](frontend/public/screenshots/dashboard_preview.png)
+
+---
+
 ## 📥 Sample API Request
 ```json
 {
@@ -247,6 +255,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
