@@ -3,8 +3,36 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import dynamic from "next/dynamic";
+const Select = dynamic(() => import("react-select"), {
+    ssr: false,
+});
 export default function PredictPage() {
+    const customStyles = {
+        control: (base) => ({
+            ...base,
+            borderRadius: "0.5rem",
+            padding: "5px",
+            color: "#6b7280",
+        }),
+        singleValue: (base) => ({
+            ...base,
+            color: "#6b7280",
+        }),
+        placeholder: (base) => ({
+            ...base,
+            color: "#9ca3af",
+        }),
+    };
+
     const [locations, setLocations] = useState([]);
+    const locationOptions = locations.map(loc => ({
+        value: loc,
+        label: loc
+            .split(" ")
+            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(" "),
+    }));
     const [formData, setFormData] = useState({
         location: "",
         total_sqft: "",
@@ -50,6 +78,14 @@ export default function PredictPage() {
             });
 
             const data = await response.json();
+            const history = JSON.parse(localStorage.getItem("predictions") || "[]");
+
+            history.push({
+                price: data.predicted_price_lakhs,
+                location: formData.location,
+            });
+
+            localStorage.setItem("predictions", JSON.stringify(history));
             router.push(
                 `/result?price=${data.predicted_price_lakhs}&bhk=${formData.bhk}&location=${formData.location}&sqft=${formData.total_sqft}`
             );
@@ -80,26 +116,28 @@ export default function PredictPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
 
                     {/* Location */}
-                    
-                    <select
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        required
-                        className="mt-2 w-full appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:outline-none "
-                    >
-                        <option value="">Select Location</option>
-
-                        {locations.map((loc, idx) => (
-                            <option key={idx} value={loc} className="max-h-60 overflow-y-auto" >
-                                {loc
-                                    .split(" ")
-                                    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                                    .join(" ")}
-                            </option>
-                        ))}
-                    </select>
-
+                    <div><label className="block text-sm font-medium text-gray-700">
+                        Location
+                    </label>
+                        <Select
+                            required
+                            options={locationOptions}
+                            placeholder="Select Location"
+                            isSearchable
+                            styles={customStyles}
+                            value={locationOptions.find(
+                                option => option.value === formData.location
+                            )}
+                            onChange={(selected) =>
+                                setFormData(prev => ({
+                                    ...prev,
+                                    location: selected.value,
+                                }))
+                            }
+                            className="mt-2 text-gray-500"
+                            classNamePrefix="react-select"
+                        />
+                    </div>
                     {/* Total Sqft */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
@@ -167,10 +205,10 @@ export default function PredictPage() {
                     </button>
 
                 </form>
-            </div>
+            </div >
 
 
 
-        </div>
+        </div >
     );
 }

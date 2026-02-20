@@ -2,14 +2,14 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-gray-50 to-white border-t border-gray-200 ">
+    <footer className=" border-t border-gray-200 ">
       <div className="max-w-6xl mx-auto px-6 pt-12">
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
           {/* Brand */}
           <div>
-            <h3 className="text-xl font-bold text-gray-900">PropWise AI</h3>
+            <h3 className="text-xl font-bold ">PropWise AI</h3>
             <p className="mt-3 text-gray-600 text-sm leading-relaxed">
               AI-powered Bengaluru property price prediction platform built using
               modern full-stack and machine learning technologies.
@@ -18,7 +18,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="md:ml-10">
-            <h4 className="text-sm font-semibold text-gray-900 mb-3">Quick Links</h4>
+            <h4 className="text-sm font-semibold  mb-3">Quick Links</h4>
 
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
@@ -43,7 +43,7 @@ export default function Footer() {
 
           {/* Tech */}
           <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-3">Built With</h4>
+            <h4 className="text-sm font-semibold  mb-3">Built With</h4>
 
             <ul className="space-y-2 text-sm text-gray-600">
               <li>Next.js + Tailwind CSS</li>

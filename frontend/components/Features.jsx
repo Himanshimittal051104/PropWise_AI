@@ -15,12 +15,13 @@ export default function Features() {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20 ">
-      <h2 className="text-4xl font-bold text-center mb-12">
+    <section className="py-24 border-t border-gray-200 ">
+      <div className="max-w-7xl mx-auto  px-6">
+      <h2 className="text-4xl font-bold text-center mb-12 ">
         Why PropWise AI?
       </h2>
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-3 gap-8 ">
         {features.map((item, idx) => (
           <div
             key={idx}
@@ -30,6 +31,7 @@ export default function Features() {
             <p className="text-gray-600 text-md">{item.desc}</p>
           </div>
         ))}
+      </div>
       </div>
     </section>
   );
