@@ -93,32 +93,15 @@ and PropWise AI instantly predicts the **estimated house price (in Lakhs)** usin
 ---
 
 
-## ▶ How to run (Frontend)
+## ▶ How to run locally
 
-Clone the repo and move inside folder:
+### Clone the repo and move inside folder:
 ```bash
 git clone https://github.com/Himanshimittal051104/PropWise_AI.git
 cd PropWise_AI
 ```
 
-Install packages:
-```bash
-npm install
-```
-
-Start frontend:
-```bash
-npm run dev
-```
-
-Open in browser:
-```text
-http://localhost:3000
-```
-
----
-
-## ▶ How to run (Backend)
+### Backend
 
 Go to backend folder:
 ```bash
@@ -154,6 +137,23 @@ uvicorn app.main:app --reload
 Backend will run at:
 ```text
 http://127.0.0.1:8000
+```
+
+### Frontend
+
+Install packages:
+```bash
+npm install
+```
+
+Start frontend:
+```bash
+npm run dev
+```
+
+Open in browser:
+```text
+http://localhost:3000
 ```
 
 ---
@@ -255,6 +255,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
