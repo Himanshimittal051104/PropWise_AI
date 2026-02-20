@@ -76,7 +76,7 @@ export default function AboutPage() {
                             System Architecture
                         </h2>
                         <pre className="bg-gray-50 rounded-lg p-4 text-sm text-gray-700 overflow-x-auto">{
-                            `Next.js Frontend
+ `                            Next.js Frontend
                                 ↓
                             FastAPI Backend (Render)
                                 ↓

@@ -10,7 +10,7 @@ export default function About() {
           <h2 className="text-4xl font-bold ">
             About PropWise AI
           </h2>
-          <p className="mt-4 text-gray-600 text-lg">
+          <p className="mt-4 text-gray-600 text-md">
             A full-stack machine learning application for predicting Bengaluru property prices.
           </p>
         </div>
@@ -19,7 +19,7 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 items-start">
 
           {/* Left Column */}
-          <div className="space-y-6 text-gray-600 leading-relaxed">
+          <div className="space-y-6 leading-relaxed">
             <p>
               PropWise AI uses a trained regression model on Bengaluru housing data
               to estimate residential property prices based on location,
@@ -47,7 +47,7 @@ export default function About() {
               <li>• Frontend: Next.js + Tailwind CSS</li>
               <li>• Backend: FastAPI (Python)</li>
               <li>• Machine Learning: scikit-learn, pandas, numpy</li>
-              <li>• Deployment: Render</li>
+              <li>• Deployment: Backend - Render</li>
             </ul>
 
             <div className="mt-6 text-sm text-gray-500">

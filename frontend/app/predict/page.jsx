@@ -86,7 +86,7 @@ export default function PredictPage() {
                         value={formData.location}
                         onChange={handleChange}
                         required
-                        className="mt-2 w-full appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-400 "
+                        className="mt-2 w-full appearance-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:outline-none "
                     >
                         <option value="">Select Location</option>
 

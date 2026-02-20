@@ -9,7 +9,7 @@ export default function Hero() {
                     Bengaluru Property Price Prediction using AI
                 </h1>
 
-                <p className="mt-6 text-gray-600">
+                <p className="mt-6 text-white">
                     AI-powered property price prediction built on Bengaluru housing data.
                     Get accurate estimates, location-based insights, and smart analytics to
                     make confident real estate decisions.
