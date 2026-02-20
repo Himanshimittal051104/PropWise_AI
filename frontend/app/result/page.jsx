@@ -1,15 +1,41 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function ResultPage() {
     const searchParams = useSearchParams();
 
-    const price = parseFloat(searchParams.get("price"));
-    const bhk = searchParams.get("bhk");
-    const rawLocation = searchParams.get("location");
-    const location = rawLocation?.toLowerCase().split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-    const sqft = searchParams.get("sqft");
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        const priceParam = searchParams.get("price");
+        const bhk = searchParams.get("bhk");
+        const rawLocation = searchParams.get("location");
+        const sqft = searchParams.get("sqft");
+
+        if (!priceParam) return;
+
+        const price = parseFloat(priceParam);
+
+        const location = rawLocation
+            ?.toLowerCase()
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+
+        setData({ price, bhk, location, sqft });
+    }, [searchParams]);
+
+    if (!data) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-gray-500">Loading result...</p>
+            </div>
+        );
+    }
+
+    const { price, bhk, location, sqft } = data;
 
     const formattedPrice =
         price >= 100
@@ -26,11 +52,8 @@ export default function ResultPage() {
             ? `₹ ${((price * 1.05) / 100).toFixed(2)} Cr`
             : `₹ ${(price * 1.05).toFixed(2)} Lakhs`;
 
-
     return (
         <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 px-6 py-16">
-
-            {/* Header */}
             <div className="max-w-3xl mx-auto text-center mb-12">
                 <h1 className="text-4xl font-bold text-gray-900">
                     Property Price Analysis
@@ -40,9 +63,7 @@ export default function ResultPage() {
                 </p>
             </div>
 
-            {/* Main Card */}
             <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-10 text-center">
-
                 <p className="text-sm text-gray-500 mb-2">
                     Estimated Price
                 </p>
@@ -55,7 +76,6 @@ export default function ResultPage() {
                     For a {bhk} BHK property in {location} ({sqft} sqft)
                 </p>
 
-                {/* Confidence Range */}
                 <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
                     <p className="text-sm text-gray-500">
                         Expected Price Range
@@ -64,9 +84,7 @@ export default function ResultPage() {
                         {lowerRange} – {upperRange}
                     </p>
                 </div>
-
             </div>
-
         </div>
     );
 }
