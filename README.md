@@ -101,7 +101,7 @@ git clone https://github.com/Himanshimittal051104/PropWise_AI.git
 cd PropWise_AI
 ```
 
-### Backend
+### Start Backend
 
 Go to backend folder:
 ```bash
@@ -139,7 +139,7 @@ Backend will run at:
 http://127.0.0.1:8000
 ```
 
-### Frontend
+### Start Frontend
 
 Install packages:
 ```bash
@@ -255,6 +255,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
