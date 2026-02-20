@@ -30,7 +30,7 @@ import { Suspense } from "react";
     if (!data) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <p className="text-gray-500">Loading result...</p>
+                <p className="  text-xl">Loading result...</p>
             </div>
         );
     }

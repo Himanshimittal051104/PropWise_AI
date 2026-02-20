@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 export default function DashboardPage() {
   const [history, setHistory] = useState([]);
 
@@ -28,7 +29,16 @@ export default function DashboardPage() {
     price >= 100
       ? `₹ ${(price / 100).toFixed(2)} Cr`
       : `₹ ${price.toFixed(2)} Lakhs`;
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
+
+  if (status === "loading") return null;
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 px-6 py-16">
       <div className="max-w-6xl mx-auto">
