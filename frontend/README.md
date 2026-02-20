@@ -117,9 +117,9 @@ Backend response format should be:
 
 ## 📸 Screenshots
 
-![Home Page](frontend/public/screenshots/home.png)
-![Predict Page](frontend/public/screenshots/predict.png)
-![Dashboard](frontend/public/screenshots/dashboard_preview.png)
+![Home Page](public/screenshots/home.png)
+![Predict Page](public/screenshots/predict.png)
+![Dashboard](public/screenshots/dashboard_preview.png)
 
 ---
 ## 🔮 Future Improvements
