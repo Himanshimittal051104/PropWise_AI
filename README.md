@@ -93,32 +93,15 @@ and PropWise AI instantly predicts the **estimated house price (in Lakhs)** usin
 ---
 
 
-## ▶ How to run (Frontend)
+## ▶ How to run locally
 
-Clone the repo and move inside folder:
+### Clone the repo and move inside folder:
 ```bash
 git clone https://github.com/Himanshimittal051104/PropWise_AI.git
 cd PropWise_AI
 ```
 
-Install packages:
-```bash
-npm install
-```
-
-Start frontend:
-```bash
-npm run dev
-```
-
-Open in browser:
-```text
-http://localhost:3000
-```
-
----
-
-## ▶ How to run (Backend)
+### Start Backend
 
 Go to backend folder:
 ```bash
@@ -154,6 +137,27 @@ uvicorn app.main:app --reload
 Backend will run at:
 ```text
 http://127.0.0.1:8000
+```
+
+### Start Frontend
+
+Go to frontend folder:
+```bash
+cd frontend
+```
+Install packages:
+```bash
+npm install
+```
+
+Start frontend:
+```bash
+npm run dev
+```
+
+Open in browser:
+```text
+http://localhost:3000
 ```
 
 ---
@@ -193,6 +197,14 @@ NEXT_PUBLIC_API_URL=https://propwise-ai.onrender.com
 FastAPI Swagger UI showing live prediction endpoint:
 
 ![Swagger Demo](backend/assets/swagger_live_prediction.png)
+
+---
+
+## 📸 Screenshots
+
+![Home Page](frontend/public/screenshots/home.png)
+![Predict Page](frontend/public/screenshots/predict.png)
+![Dashboard](frontend/public/screenshots/dashboard_preview.png)
 
 ---
 
@@ -247,6 +259,11 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
+
+
+
+
 
 
 

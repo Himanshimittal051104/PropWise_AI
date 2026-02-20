@@ -1,72 +1,54 @@
-# PropWise AI 🏠
+# PropWise AI — Frontend
 
-PropWise AI is a full-stack machine learning web application that predicts house prices in Bangalore using XGBoost.
-
-This project combines Machine Learning, FastAPI backend, and a Next.js frontend into a real-world end-to-end system.
----
-
-## ✨ What this project does
-
-You enter:
-
-- Location
-- BHK
-- Total Sqft
-- Bathrooms
-
-and it instantly predicts the **estimated house price (in Lakhs)** using an ML model served via FastAPI.
+This folder contains the **frontend UI for PropWise AI**, a web app that predicts house prices in Bengaluru based on user input. The UI is built using **Next.js** and **Tailwind CSS** and connects to a backend API that returns price estimates.
 
 ---
 
-## 🚀 Features
+## 🚀 What This Frontend Does
 
-- XGBoost-based house price prediction
-- Feature engineering + outlier removal
-- Location encoding
-- FastAPI backend REST API
-- Next.js + Tailwind frontend
-- End-to-end ML pipeline (Notebook → Model → API → UI)
-- Real-time prediction
-- Controlled React inputs
-- Loading state during inference
+Users can enter:
 
----
+- **Location**
+- **BHK (Bedrooms)**
+- **Total Sqft**
+- **Bathrooms**
 
-## 📊 Model Performance
-
-- XGBoost Regressor  
-- RMSE ≈ **26 Lakhs**
+and submit to receive a **predicted house price** (in Lakhs) from the backend.
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Built With
 
-### Machine Learning
-- Python
-- Pandas / NumPy
-- Scikit-learn
-- XGBoost
-
-### Backend
-- FastAPI
-- Joblib
-
-### Frontend
-- Next.js (React)
-- Tailwind CSS
-
-### Tools
-- Git & GitHub
+- **Next.js** — React framework for UI
+- **Tailwind CSS** — Utility-first styling
+- **Fetch / Axios** — API calls to backend
 
 ---
 
+## 📁 Folder Structure
+```md
+frontend/
+├── app/             # Next.js pages & routes
+├── components/      # UI Components
+├── public/          # Static assets (images/icons)
+├── styles/          # Tailwind + global CSS
+├── package.json     # Frontend dependencies & scripts
+└── README.md        # This file
+```
+---
 
-## ▶ How to run (Frontend)
+## ▶ How to run locally
 
-Clone the repo and move inside folder:
+### Clone the repo and move inside folder:
 ```bash
 git clone https://github.com/Himanshimittal051104/PropWise_AI.git
 cd PropWise_AI
+```
+### Start Frontend
+
+Go to frontend folder:
+```bash
+cd PropWise_AI/frontend
 ```
 
 Install packages:
@@ -86,59 +68,50 @@ http://localhost:3000
 
 ---
 
-## ▶ How to run (Backend)
+## 🧩 Connect to Backend
 
-Go to backend folder:
-```bash
-cd backend
+This frontend communicates with a FastAPI backend for house price predictions.
+
+### Local Development
+
+Before submitting inputs, make sure your backend FastAPI server is running (typically at http://localhost:8000).
+
+If your backend is on another URL, create a .env.local file:
+```env
+NEXT_PUBLIC_API_URL=http://your-backend-url
 ```
+The frontend will use this to send prediction requests.
 
-Create virtual environment (optional but recommended):
+### Production (Deployed)
+
+FastAPI backend is deployed on Render with GitHub auto-deploy enabled.
+
+Live API:
 ```bash
-python -m venv venv
-```
-
-
-Activate it:
-**Windows**
-```bash
-venv\Scripts\activate
-```
-**Mac/Linux**
-```bash
-source venv/bin/activate
-```
-
-Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-Start backend server:
-```bash
-uvicorn app.main:app --reload
-```
-
-Backend will run at:
-```text
-http://127.0.0.1:8000
+https://propwise-ai.onrender.com/docs
 ```
 
 ---
 
 ## 📥 Sample API Request
+
+Frontend sends a POST request like:
+
 ```json
 {
   "location": "Whitefield",
   "bhk": 2,
-  "total_sqft": 1200,
-  "bath": 2
+  "bathroom": 2,
+  "total_sqft": 1200
 }
 ```
 
 ---
 
 ## 📤 Sample API Response
+
+Backend response format should be:
+
 ```json
 {
   "predicted_price_lakhs": 78.4
@@ -147,26 +120,30 @@ http://127.0.0.1:8000
 
 ---
 
-## 📌 Why I built this
+## 📌 Key Features
 
-This project helped me understand:
-
-- How frontend communicates with backend
-- How ML models are used in real applications
-- Form validation and UX handling
-- API integration
-- Real-world React logic
+- Real-time prediction API calls
+- Form validation for user inputs
+- Loading indicator during API request
+- Responsive layout
 
 ---
 
+## 📸 Screenshots
+
+![Home Page](public/screenshots/home.png)
+![Predict Page](public/screenshots/predict.png)
+![Dashboard](public/screenshots/dashboard_preview.png)
+
+---
 ## 🔮 Future Improvements
 
-- Deploy frontend & backend
-- Location dropdown
-- Add charts for predictions
-- Better UI animations
-- Add error messages
+- Charts for price trends
 - Multi-city support
+- Authentication
+- Improved UI animations
+- Error messaging
+- Database integration
 
 ---
 
@@ -175,7 +152,3 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
-
-
-
-
