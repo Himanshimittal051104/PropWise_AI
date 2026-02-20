@@ -70,6 +70,10 @@ http://localhost:3000
 
 ## 🧩 Connect to Backend
 
+This frontend communicates with a FastAPI backend for house price predictions.
+
+### Local Development
+
 Before submitting inputs, make sure your backend FastAPI server is running (typically at http://localhost:8000).
 
 If your backend is on another URL, create a .env.local file:
@@ -77,6 +81,15 @@ If your backend is on another URL, create a .env.local file:
 NEXT_PUBLIC_API_URL=http://your-backend-url
 ```
 The frontend will use this to send prediction requests.
+
+### Production (Deployed)
+
+FastAPI backend is deployed on Render with GitHub auto-deploy enabled.
+
+Live API:
+```bash
+https://propwise-ai.onrender.com/docs
+```
 
 ---
 
