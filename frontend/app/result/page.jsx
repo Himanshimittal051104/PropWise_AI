@@ -2,8 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-export default function ResultPage() {
+import { Suspense } from "react";
+ function ResultPage() {
     const searchParams = useSearchParams();
 
     const [data, setData] = useState(null);
@@ -87,4 +87,11 @@ export default function ResultPage() {
             </div>
         </div>
     );
+}
+export default function ResultPageWrapper() {
+  return (
+    <Suspense fallback={null}>
+      <ResultPage />
+    </Suspense>
+  );
 }
