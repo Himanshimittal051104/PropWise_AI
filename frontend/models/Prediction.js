@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const PredictionSchema = new mongoose.Schema({
-  userId: String,
+  userId: {type:String,required:true},
   location: String,
   bhk: Number,
   bathroom: Number,
-  sqft: Number,
+  total_sqft: Number,
   price: Number,
   createdAt: {
     type: Date,

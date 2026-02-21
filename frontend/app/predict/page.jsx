@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import locations from "@/constants/location";
 import dynamic from "next/dynamic";
 const Select = dynamic(() => import("react-select"), {
@@ -68,16 +67,21 @@ export default function PredictPage() {
             });
 
             const data = await response.json();
-            const history = JSON.parse(localStorage.getItem("predictions") || "[]");
-
-            history.push({
-                price: data.predicted_price_lakhs,
-                location: formData.location,
+            await fetch("/api/prediction", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    location: formData.location,
+                    total_sqft: parseFloat(formData.total_sqft),
+                    bhk: parseInt(formData.bhk),
+                    bathroom: parseInt(formData.bathroom),
+                    price: data.predicted_price_lakhs,
+                }),
             });
-
-            localStorage.setItem("predictions", JSON.stringify(history));
             router.push(
-                `/result?price=${data.predicted_price_lakhs}&bhk=${formData.bhk}&location=${formData.location}&sqft=${formData.total_sqft}`
+                `/result?price=${data.predicted_price_lakhs}&bhk=${formData.bhk}&location=${formData.location}&total_sqft=${formData.total_sqft}`
             );
         } catch (error) {
             console.error(error);

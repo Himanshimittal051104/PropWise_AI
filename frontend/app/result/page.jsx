@@ -12,7 +12,7 @@ import { Suspense } from "react";
         const priceParam = searchParams.get("price");
         const bhk = searchParams.get("bhk");
         const rawLocation = searchParams.get("location");
-        const sqft = searchParams.get("sqft");
+        const total_sqft = searchParams.get("total_sqft");
 
         if (!priceParam) return;
 
@@ -24,7 +24,7 @@ import { Suspense } from "react";
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
 
-        setData({ price, bhk, location, sqft });
+        setData({ price, bhk, location, total_sqft });
     }, [searchParams]);
 
     if (!data) {
@@ -35,7 +35,7 @@ import { Suspense } from "react";
         );
     }
 
-    const { price, bhk, location, sqft } = data;
+    const { price, bhk, location, total_sqft } = data;
 
     const formattedPrice =
         price >= 100
@@ -73,7 +73,7 @@ import { Suspense } from "react";
                 </h2>
 
                 <p className="text-gray-600 mb-6">
-                    For a {bhk} BHK property in {location} ({sqft} sqft)
+                    For a {bhk} BHK property in {location} ({total_sqft} sqft)
                 </p>
 
                 <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">

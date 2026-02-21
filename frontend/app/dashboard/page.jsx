@@ -7,8 +7,13 @@ export default function DashboardPage() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("predictions") || "[]");
-    setHistory(stored.reverse()); // latest first
+    const fetchHistory = async () => {
+      const res = await fetch("/api/prediction");
+      const data = await res.json();
+      setHistory(data); 
+    };
+
+    fetchHistory();
   }, []);
 
   const validHistory = history.filter(
