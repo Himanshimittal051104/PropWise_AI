@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import locations from "@/constants/location";
 import dynamic from "next/dynamic";
 const Select = dynamic(() => import("react-select"), {
     ssr: false,
@@ -25,7 +26,6 @@ export default function PredictPage() {
         }),
     };
 
-    const [locations, setLocations] = useState([]);
     const locationOptions = locations.map(loc => ({
         value: loc,
         label: loc
@@ -48,16 +48,6 @@ export default function PredictPage() {
         });
 
     };
-
-    useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/locations`)
-            .then(res => res.json())
-            .then(data => setLocations(data.locations || []))
-            .catch(err => {
-                console.error(err);
-                setLocations([]);
-            });
-    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
