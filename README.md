@@ -29,19 +29,17 @@ and PropWise AI instantly predicts the **estimated house price (in Lakhs)** usin
 
 ## 🚀 Features
 
-- XGBoost-based house price prediction
-- Feature engineering + outlier removal
-- Location one-hot encoding
-- FastAPI backend REST API
-- Pydantic-based backend validation
-- Separate result page with analytics
-- Dashboard with prediction history (localStorage)
-- Real-time inference
-- Loading states & form validation
-- Next.js + Tailwind frontend
-- End-to-end ML pipeline (Notebook → Model → API → UI)
-- Backend deployed on Render
-- Frontend deployed on Vercel
+- XGBoost-based house price prediction model trained on Bengaluru housing data
+- Advanced feature engineering, outlier removal, and log-transformed target optimization
+- Location-based one-hot encoding for accurate price modeling
+- FastAPI backend serving real-time ML predictions via REST API
+- Secure Google Authentication (NextAuth) with protected routes
+- User-specific prediction history persisted in MongoDB Atlas
+- Interactive dashboard with real-time prediction analytics
+- Session-based access control for secure API endpoints
+- Loading states, form validation, and improved UX handling
+- Full-stack architecture: Notebook → ML Model → API → Database → UI
+- Backend deployed on Render, Frontend deployed on Vercel
 
 ---
 
@@ -92,6 +90,19 @@ and PropWise AI instantly predicts the **estimated house price (in Lakhs)** usin
 
 ---
 
+## 🏗 Architecture
+```md
+Frontend (Next.js + Tailwind)
+↓
+FastAPI ML Backend (XGBoost Model)
+↓
+MongoDB Atlas (User Prediction Storage)
+
+Authentication handled via NextAuth (Google OAuth).
+Each prediction is linked to the logged-in user and displayed on a protected dashboard.
+```
+
+---
 
 ## ▶ How to run locally
 
@@ -247,10 +258,8 @@ This project helped me understand:
 
 - Charts for price trends
 - Multi-city support
-- Authentication
 - Improved UI animations
 - Error messaging
-- Database integration
 
 ---
 
@@ -259,6 +268,8 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
+
 
 
 
