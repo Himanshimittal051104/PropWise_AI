@@ -91,7 +91,7 @@ and PropWise AI instantly predicts the **estimated house price (in Lakhs)** usin
 ---
 
 ## 🏗 Architecture
-
+```md
 Frontend (Next.js + Tailwind)
 ↓
 FastAPI ML Backend (XGBoost Model)
@@ -100,6 +100,7 @@ MongoDB Atlas (User Prediction Storage)
 
 Authentication handled via NextAuth (Google OAuth).
 Each prediction is linked to the logged-in user and displayed on a protected dashboard.
+```
 
 ---
 
@@ -267,6 +268,7 @@ This project helped me understand:
 Himanshi Mittal
 
 ---
+
 
 
 
