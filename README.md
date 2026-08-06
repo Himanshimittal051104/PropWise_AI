@@ -82,7 +82,7 @@ and PropWise AI instantly predicts the **estimated house price (in Lakhs)** usin
 ### Frontend
 - Next.js (React)
 - Tailwind CSS
-- React Select
+- React 
 - Vercel Deployment
 
 ### Tools
