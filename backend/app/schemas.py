@@ -12,3 +12,14 @@ class HouseInput(BaseModel):
         if not v:
             raise ValueError("location cannot be empty or spaces")
         return v
+
+    @validator("total_sqft")
+    def sqft_must_be_realistic(cls, v, values):
+        bhk = values.get("bhk")
+
+        if bhk is not None and v / bhk < 300:
+            raise ValueError(
+                "total_sqft must be at least 300 sqft per BHK"
+            )
+
+        return v
