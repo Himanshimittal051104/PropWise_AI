@@ -4,10 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import locations from "@/constants/location";
 import dynamic from "next/dynamic";
+
 const Select = dynamic(() => import("react-select"), {
     ssr: false,
 });
+
 export default function PredictPage() {
+
     const customStyles = {
         control: (base) => ({
             ...base,
@@ -32,41 +35,62 @@ export default function PredictPage() {
             .map(w => w.charAt(0).toUpperCase() + w.slice(1))
             .join(" "),
     }));
+
     const [formData, setFormData] = useState({
         location: "",
         total_sqft: "",
         bhk: "",
         bathroom: "",
     });
+
     const router = useRouter();
+
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
-
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setLoading(true);
+        setError("");
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/predict`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    location: formData.location,
-                    total_sqft: parseFloat(formData.total_sqft),
-                    bhk: parseInt(formData.bhk),
-                    bathroom: parseInt(formData.bathroom),
-                }),
-            });
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_API_URL}/predict`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        location: formData.location,
+                        total_sqft: parseFloat(formData.total_sqft),
+                        bhk: parseInt(formData.bhk),
+                        bathroom: parseInt(formData.bathroom),
+                    }),
+                }
+            );
 
             const data = await response.json();
+
+            // Handle backend validation errors
+            if (!response.ok) {
+                const message =
+                    data.detail?.[0]?.msg ||
+                    "Unable to predict house price.";
+
+                setError(message);
+                return;
+            }
+
+            // Save prediction only if prediction was successful
             await fetch("/api/prediction", {
                 method: "POST",
                 headers: {
@@ -80,14 +104,18 @@ export default function PredictPage() {
                     price: data.predicted_price_lakhs,
                 }),
             });
+
+            // Go to result page only after successful prediction
             router.push(
                 `/result?price=${data.predicted_price_lakhs}&bhk=${formData.bhk}&location=${formData.location}&total_sqft=${formData.total_sqft}`
             );
+
         } catch (error) {
             console.error(error);
+            setError("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     return (
@@ -95,13 +123,16 @@ export default function PredictPage() {
 
             {/* Header */}
             <div className="max-w-3xl mx-auto text-center mb-12">
+
                 <h1 className="text-4xl font-bold text-gray-900">
                     Estimate Bengaluru Property Price
                 </h1>
+
                 <p className="mt-4 text-gray-600 text-lg">
                     Enter property details below to get an AI-powered price prediction
                     trained on Bengaluru housing data.
                 </p>
+
             </div>
 
             {/* Form Card */}
@@ -110,9 +141,12 @@ export default function PredictPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
 
                     {/* Location */}
-                    <div><label className="block text-sm font-medium text-gray-700">
-                        Location
-                    </label>
+                    <div>
+
+                        <label className="block text-sm font-medium text-gray-700">
+                            Location
+                        </label>
+
                         <Select
                             required
                             options={locationOptions}
@@ -131,12 +165,17 @@ export default function PredictPage() {
                             className="mt-2 text-gray-500"
                             classNamePrefix="react-select"
                         />
+
                     </div>
+
+
                     {/* Total Sqft */}
                     <div>
+
                         <label className="block text-sm font-medium text-gray-700">
                             Total Square Feet
                         </label>
+
                         <input
                             name="total_sqft"
                             value={formData.total_sqft}
@@ -146,15 +185,19 @@ export default function PredictPage() {
                             min="300"
                             step="0.01"
                             placeholder="1200.5"
-                            className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white "
+                            className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white"
                         />
+
                     </div>
+
 
                     {/* BHK */}
                     <div>
+
                         <label className="block text-sm font-medium text-gray-700">
                             BHK
                         </label>
+
                         <input
                             name="bhk"
                             value={formData.bhk}
@@ -164,15 +207,19 @@ export default function PredictPage() {
                             min="1"
                             step="1"
                             placeholder="3"
-                            className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white "
+                            className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white"
                         />
+
                     </div>
+
 
                     {/* Bathrooms */}
                     <div>
+
                         <label className="block text-sm font-medium text-gray-700">
                             Bathrooms
                         </label>
+
                         <input
                             name="bathroom"
                             value={formData.bathroom}
@@ -182,27 +229,37 @@ export default function PredictPage() {
                             min="1"
                             step="1"
                             placeholder="2"
-                            className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white "
+                            className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-500 bg-white focus:bg-white"
                         />
+
                     </div>
+
+
+                    {/* Error Message */}
+                    {error && (
+                        <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-red-600">
+                            {error}
+                        </div>
+                    )}
+
 
                     {/* Submit Button */}
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-full font-medium py-3 rounded-lg transition ${loading
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-blue-600 hover:bg-blue-700 text-white"
-                            }`}
+                        className={`w-full font-medium py-3 rounded-lg transition ${
+                            loading
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-blue-600 hover:bg-blue-700 text-white"
+                        }`}
                     >
                         {loading ? "Predicting..." : "Predict Price"}
                     </button>
 
                 </form>
-            </div >
 
+            </div>
 
-
-        </div >
+        </div>
     );
 }
